@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+  workflow_dispatch:
+
+env:
+  GITHUB_TOKEN: $GITHUB_TOKEN
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
