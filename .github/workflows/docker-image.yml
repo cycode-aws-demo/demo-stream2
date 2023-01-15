@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  GITHUB_TOKEN: $GITHUB_TOKEN
+  GITHUB_TOKEN: ${{ github.token }}
 
 jobs:
 
