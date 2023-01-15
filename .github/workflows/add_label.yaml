@@ -4,6 +4,9 @@ on:
   issues:
     type: [opened]
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   issue_check:
     runs-on: ubuntu-latest
@@ -11,5 +14,5 @@ jobs:
       - run: |
           if [[ "${{ github.event.issue.title }}" == *"bug"* ]]
           then
-            curl -X POST  -H "Authorization: Token ${{ secrets.GITHUB_TOKEN }}" -d '{"labels": ["bug"]}' ${{ github.event.issue.url }}/labels
+            curl -X POST  -H "Authorization: Token $GITHUB_TOKEN" -d '{"labels": ["bug"]}' ${{ github.event.issue.url }}/labels
           fi
