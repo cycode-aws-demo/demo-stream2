@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          if [[ "${{ github.event.issue.title }}" == *"bug"* ]]
+          if [[ "${{ github.event.issue.body }}" == *"bug"* ]]
           then
             curl -X POST  -H "Authorization: Token $GITHUB_TOKEN" -d '{"labels": ["bug"]}' ${{ github.event.issue.url }}/labels
           fi
