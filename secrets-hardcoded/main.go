@@ -6,8 +6,6 @@ import (
 	"net/http"
 )
 
-// Do stuff with AWS credentials
-
 func HandleRoot(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World!")
 }
