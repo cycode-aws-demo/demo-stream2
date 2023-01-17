@@ -6,11 +6,6 @@ import (
 	"net/http"
 )
 
-var (
-	AWS_ACCESS_KEY_ID     = "AKIAUDSMZPA6FOJTM5MJ"
-	AWS_SECRET_ACCESS_KEY = "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"
-)
-
 // Do stuff with AWS credentials
 
 func HandleRoot(w http.ResponseWriter, r *http.Request) {
